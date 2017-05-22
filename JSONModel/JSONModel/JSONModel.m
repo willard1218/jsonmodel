@@ -645,11 +645,13 @@ static JSONKeyMapper* globalKeyMapper = nil;
             }
 
             NSString *nsPropertyName = @(propertyName);
-            if([[self class] propertyIsOptional:nsPropertyName]){
+            if([[self class] propertyIsOptional:nsPropertyName] ||
+               [[[self class] optionalProperties] containsObject:nsPropertyName]){
                 p.isOptional = YES;
             }
 
-            if([[self class] propertyIsIgnored:nsPropertyName]){
+            if([[self class] propertyIsIgnored:nsPropertyName] ||
+               [[[self class] ignoredProperties] containsObject:nsPropertyName]){
                 p = nil;
             }
 
@@ -1314,9 +1316,19 @@ static JSONKeyMapper* globalKeyMapper = nil;
     return NO;
 }
 
++(NSArray <NSString *>*)optionalProperties
+{
+    return nil;
+}
+
 +(BOOL)propertyIsIgnored:(NSString *)propertyName
 {
     return NO;
+}
+
++(NSArray <NSString *>*)ignoredProperties
+{
+    return nil;
 }
 
 +(NSString*)protocolForArrayProperty:(NSString *)propertyName

@@ -242,6 +242,7 @@ DEPRECATED_ATTRIBUTE
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName;
 
++ (NSArray <NSString *>*)optionalProperties;
 /**
  * Indicates whether the property with the given name is Ignored.
  * To have a model with all of its properties being Ignored just return YES.
@@ -251,6 +252,7 @@ DEPRECATED_ATTRIBUTE
  */
 + (BOOL)propertyIsIgnored:(NSString *)propertyName;
 
++ (NSArray <NSString *>*)ignoredProperties;
 /**
  * Indicates the class used for the elements of a collection property.
  * Rather than using:
